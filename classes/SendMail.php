@@ -56,7 +56,9 @@ class SendMail {
             }
 
             // SEND NOTIFICATION EMAIL
-            Mail::sendTo($properties['mail_recipients'], $template, $data, function ($message) use ($properties, $post, $files) {
+            $recipients = array_combine($properties['mail_recipients'], $properties['mail_recipients']);
+
+            Mail::sendTo($recipients, $template, $data, function ($message) use ($properties, $post, $files) {
 
                 // SEND BLIND CARBON COPY
                 if (isset($properties['mail_bcc']) && is_array($properties['mail_bcc'])) {
