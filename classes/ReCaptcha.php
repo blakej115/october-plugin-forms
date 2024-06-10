@@ -26,11 +26,11 @@ trait ReCaptcha {
     }
 
     private function isReCaptchaEnabled() {
-        return ($this->property('recaptcha_enabled') && Settings::get('recaptcha_site_key') != '' && Settings::get('recaptcha_secret_key') != '');
+        return $this->property('recaptcha_enabled') && !$this->isReCaptchaMisconfigured();
     }
 
     private function isReCaptchaMisconfigured() {
-        return ($this->property('recaptcha_enabled') && (Settings::get('recaptcha_site_key') == '' || Settings::get('recaptcha_secret_key') == ''));
+        return Settings::get('recaptcha_site_key') == '' || Settings::get('recaptcha_secret_key') == '';
     }
 
     private function getReCaptchaLang($lang='') {
