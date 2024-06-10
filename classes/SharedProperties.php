@@ -5,6 +5,7 @@ namespace BlakeJones\MagicForms\Classes;
 use Lang;
 
 trait SharedProperties {
+    public $recaptcha_enabled = false;
 
     public function defineProperties() {
         return [

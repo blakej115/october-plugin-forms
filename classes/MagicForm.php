@@ -25,8 +25,9 @@ abstract class MagicForm extends ComponentBase
 
     public function onRun() {
 
-        $this->page['recaptcha_enabled']       = $this->isReCaptchaEnabled();
-        $this->page['recaptcha_misconfigured'] = $this->isReCaptchaMisconfigured();
+        $this->recaptcha_enabled               = $this->isReCaptchaEnabled();
+        $this->page['recaptcha_enabled']       = $this->page['recaptcha_enabled'] || $this->isReCaptchaEnabled();
+        $this->page['recaptcha_misconfigured'] = $this->page['recaptcha_misconfigured'] || $this->isReCaptchaMisconfigured();
 
         if ($this->isReCaptchaEnabled()) {
             $this->loadReCaptcha();
