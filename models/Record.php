@@ -28,10 +28,11 @@
             return $this->filterGroups();
         }
 
-        public function beforeDelete()
-        {
-            foreach ($this->attachments as $file) {
-                $file->delete();
+        public function beforeDelete() {
+            if ($this->files && $this->files->count() > 0) {
+                foreach ($this->files as $file) {
+                    $file->delete();
+                }
             }
         }
 
