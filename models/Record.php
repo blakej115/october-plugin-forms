@@ -28,6 +28,13 @@
             return $this->filterGroups();
         }
 
+        public function beforeDelete()
+        {
+            foreach ($this->attachments as $file) {
+                $file->delete();
+            }
+        }
+
     }
 
 ?>
